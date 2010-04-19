@@ -1,0 +1,20 @@
+MIT License:
+	SLF4J API Module,
+	JCL 1.1.1 implemented over SLF4J
+
+MPL or LGPL dual license:
+	Javassist
+
+BSD style:
+	Hamcrest Core,
+	Hamcrest Library,
+
+Common Public License Version 1.0:
+	JUnit
+
+GNU Lesser General Public License:
+	Logback Classic Module,
+	Logback Core Module
+
+The Apache Software License, Version 2.0:
+	Factory Enhancer

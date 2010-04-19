@@ -1,0 +1,45 @@
+<body>
+factory-enhancerのAPI仕様についてのドキュメント。
+<p>
+このモジュールは、次のようなクラスやインターフェースを中心に構成されている。
+</p>
+<h3> それぞれのファクトリを拡張するエンジンクラス </h3>
+<dl>
+	<dt> {@link org.jiemamy.utils.enhancer.FactoryEnhancer} </dt>
+	<dd>
+	実装クラスを持つファクトリを拡張する機能を提供する。
+	拡張対象のファクトリクラスでは、それぞれのプロダクトクラスに対してインスタンス生成式({@code new})を直接記述することができる。
+	{@code FactoryEnhancer}は、それらのプロダクトクラスに対するインスタンス生成式や、生成したプロダクトのメソッドの内容を変更する。
+	</dd>
+	<dt> {@link org.jiemamy.utils.enhancer.InterfaceEnhancer} </dt>
+	<dd>
+	インターフェースのみからなるファクトリを実装、および拡張する機能を提供する。
+	拡張対象のファクトリインターフェースでは、それぞれのプロダクトインターフェースを返すファクトリメソッドを記述することができる。
+	{@code InterfaceEnhancer}は、それらのプロダクトインターフェースを実装したクラスを自動生成し、
+	それぞれのファクトリメソッドでは、対応するプロダクトのインスタンスを生成して返すプログラムを自動的に実装する。
+	また、拡張によりそれらのプロダクトクラスに対するインスタンス生成式や、生成したプロダクトのメソッドの内容を変更する。
+	</dd>
+</dl>
+
+<h3> 拡張の方法を記述するクラス, インターフェース </h3>
+<dl>
+	<dt> {@link org.jiemamy.utils.enhancer.Enhance} </dt>
+	<dd>
+	拡張する対象のメソッド起動やコンストラクタ起動を指定し、またそれらの拡張方法を定義する。
+	</dd>
+</dl>
+
+<h3> 他の実装からの移植 </h3>
+<dl>
+	<dt> {@link org.jiemamy.utils.enhancer.driver.ProxyDriver} </dt>
+	<dd>
+	{@link java.lang.reflect.Proxy}の機能を利用したドライバ。
+	通常のコンストラクタ呼び出しの代わりに、同機能を利用したインスタンス生成を行うための拡張を定義できる。
+	</dd>
+	<dt> {@link org.jiemamy.utils.enhancer.driver.AopAllianceDriver} </dt>
+	<dd>
+	<a href="http://aopalliance.sourceforge.net/">AOP Alliance</a>が提供する各種インターセプタインターフェースのドライバ。
+	各種ジョインポイントに対する標準的なインターセプトの記述を、factory-enhancerで利用可能な形式に変換する。
+	</dd>
+</dl>
+</body>
