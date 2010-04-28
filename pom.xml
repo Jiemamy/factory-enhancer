@@ -5,17 +5,16 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>org.jiemamy</groupId>
-    <artifactId>master</artifactId>
-    <version>1.1</version>
+    <artifactId>jiemamy-master</artifactId>
+    <version>1.3</version>
   </parent>
   <groupId>org.jiemamy</groupId>
   <artifactId>factory-enhancer</artifactId>
   <name>Factory Enhancer</name>
   <version>0.2.0-SNAPSHOT</version>
-  <url>http://report.jiemamy.org/factory-enhancer</url>
   <ciManagement>
     <system>hudson</system>
-    <url>http://hudson.jiemamy.org/hudson/job/factory-enhancer/</url>
+    <url>http://hudson.jiemamy.org/job/factory-enhancer/</url>
     <notifiers>
       <notifier>
         <sendOnSuccess>false</sendOnSuccess>
@@ -36,9 +35,9 @@
     </developer>
   </developers>
   <scm>
-    <connection>scm:svn:http://svn.sourceforge.jp/svnroot/jiemamy/leto/factory-enhancer/trunk</connection>
-    <developerConnection>scm:svn:svn+ssh://svn.sourceforge.jp/svnroot/jiemamy/leto/factory-enhancer/trunk</developerConnection>
-    <url>http://svn.sourceforge.jp/cgi-bin/viewcvs.cgi/leto/factory-enhancer/trunk/?root=jiemamy</url>
+    <connection>scm:svn:http://svn.jiemamy.org/products/leto/factory-enhancer/trunk</connection>
+    <developerConnection>scm:svn:http://svn.jiemamy.org/products/leto/factory-enhancer/trunk</developerConnection>
+    <url>http://fisheye.jiemamy.org/browse/leto/factory-enhancer/trunk</url>
   </scm>
   <repositories>
     <repository>
@@ -51,7 +50,7 @@
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>4.5</version>
+      <version>4.8.1</version>
       <scope>test</scope>
     </dependency>
     <dependency>
