@@ -22,7 +22,7 @@ import java.util.List;
 
 /**
  * {@link List}を型引数付きで継承し、明示的にメソッドをオーバーライドしないもの。
- * @version $Id: ExtendsListImplicit.java 3739 2009-10-09 14:08:04Z ashigeru $
+ * @version $Id$
  * @author Suguru ARAKAWA
  */
 public interface ExtendsListImplicit extends List<String> {

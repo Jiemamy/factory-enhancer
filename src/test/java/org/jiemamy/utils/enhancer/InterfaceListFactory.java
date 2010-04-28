@@ -21,7 +21,7 @@ package org.jiemamy.utils.enhancer;
 /**
  * {@link ExtendsListImplicit},
  * {@link ExtendsListExplicit}を生成するファクトリ。
- * @version $Id: InterfaceListFactory.java 3739 2009-10-09 14:08:04Z ashigeru $
+ * @version $Id$
  * @author Suguru ARAKAWA
  */
 public interface InterfaceListFactory {

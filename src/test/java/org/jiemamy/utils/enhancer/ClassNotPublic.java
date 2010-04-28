@@ -20,7 +20,7 @@ package org.jiemamy.utils.enhancer;
 
 /**
  * {@code public}でないクラス。
- * @version $Id: ClassNotPublic.java 3734 2009-10-08 13:05:37Z ashigeru $
+ * @version $Id$
  * @author Suguru ARAKAWA
  */
 class ClassNotPublic {

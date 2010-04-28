@@ -41,7 +41,7 @@ import org.jiemamy.utils.enhancer.InvocationPointcut;
 
 /**
  * このパッケージのテストで利用するテスト基底クラス。
- * @version $Id: DriverTestRoot.java 3734 2009-10-08 13:05:37Z ashigeru $
+ * @version $Id$
  * @author Suguru ARAKAWA
  */
 public class DriverTestRoot {

@@ -480,7 +480,7 @@ public class ReflectionUtil {
 	 * <p>
 	 * {@link Method}と{@link Constructor}を同時に取り扱うための型。
 	 * </p>
-	 * @version $Date: 2009-10-09 19:03:38 +0900 (金, 09 10 2009) $
+	 * @version $Date$
 	 * @author Suguru ARAKAWA
 	 * @param <T> 内包するメンバ
 	 */

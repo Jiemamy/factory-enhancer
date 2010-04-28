@@ -35,7 +35,7 @@ import org.jiemamy.utils.enhancer.EnhanceException;
 
 /**
  * 拡張対象のプロダクトを検出する。
- * @version $Date: 2009-10-09 12:59:48 +0900 (金, 09 10 2009) $
+ * @version $Date$
  * @author Suguru ARAKAWA (Gluegent, Inc.)
  */
 public class EnhanceTargetProductCollector extends ExprEditor {

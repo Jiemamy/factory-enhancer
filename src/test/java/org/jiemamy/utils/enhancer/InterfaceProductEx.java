@@ -20,7 +20,7 @@ package org.jiemamy.utils.enhancer;
 
 /**
  * 単純なプロダクト。
- * @version $Id: InterfaceProductEx.java 3734 2009-10-08 13:05:37Z ashigeru $
+ * @version $Id$
  * @author Suguru ARAKAWA
  */
 public interface InterfaceProductEx extends InterfaceProduct {

@@ -25,7 +25,7 @@ import org.jiemamy.utils.enhancer.InvocationHandler;
 
 /**
  * アドバイスの適用先とアドバイスの内容を保持するアスペクトを表現するクラス。
- * @version $Date: 2009-09-29 23:06:33 +0900 (火, 29  9 2009) $
+ * @version $Date$
  * @author Suguru ARAKAWA (Gluegent, Inc.)
  * @param <T> 適用対象を表現する型
  */

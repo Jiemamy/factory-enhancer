@@ -42,7 +42,7 @@ import org.jiemamy.utils.enhancer.aspect.ThroughHandler;
 
 /**
  * Test for {@link InterfaceEnhancer}.
- * @version $Id: InterfaceEnhancerTest.java 3739 2009-10-09 14:08:04Z ashigeru $
+ * @version $Id$
  * @author Suguru ARAKAWA
  */
 public class InterfaceEnhancerTest {

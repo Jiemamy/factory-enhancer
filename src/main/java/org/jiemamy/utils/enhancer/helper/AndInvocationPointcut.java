@@ -26,7 +26,7 @@ import org.jiemamy.utils.enhancer.InvocationPointcut;
 
 /**
  * 複数のフィルタの論理積を結果とするポイントカット定義。
- * @version $Date: 2009-09-21 02:27:46 +0900 (月, 21  9 2009) $
+ * @version $Date$
  * @author Suguru ARAKAWA (Gluegent, Inc.)
  */
 public class AndInvocationPointcut implements InvocationPointcut {

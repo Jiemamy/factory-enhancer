@@ -25,7 +25,7 @@ import javassist.CtField;
 
 /**
  * アドバイスの適用先とアドバイスの適用方法の一覧を表す。
- * @version $Date: 2009-09-21 02:27:46 +0900 (月, 21  9 2009) $
+ * @version $Date$
  * @author Suguru ARAKAWA (Gluegent, Inc.)
  * @param <T> 適用対象を表現する型
  */

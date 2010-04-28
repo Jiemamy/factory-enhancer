@@ -18,7 +18,7 @@ package org.jiemamy.utils.enhancer.helper;
 
 /**
  * Test target for {@link MethodInvocationTest}.
- * @version $Date: 2009-09-21 02:27:46 +0900 (月, 21  9 2009) $
+ * @version $Date$
  * @author Suguru ARAKAWA
  */
 @SuppressWarnings("all")

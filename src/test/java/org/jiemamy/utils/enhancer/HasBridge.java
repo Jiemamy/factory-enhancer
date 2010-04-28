@@ -17,7 +17,7 @@ package org.jiemamy.utils.enhancer;
 
 /**
  * ブリッジを持つ(可能性のある)メソッド。
- * @version $Date: 2009-09-21 02:27:46 +0900 (月, 21  9 2009) $
+ * @version $Date$
  * @author Suguru ARAKAWA
  */
 public class HasBridge implements Comparable<HasBridge> {

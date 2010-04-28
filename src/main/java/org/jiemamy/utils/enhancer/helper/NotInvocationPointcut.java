@@ -24,7 +24,7 @@ import org.jiemamy.utils.enhancer.InvocationPointcut;
 
 /**
  * 他のポイントカットの論理否定を結果とするポイントカット定義。
- * @version $Date: 2009-09-21 02:27:46 +0900 (月, 21  9 2009) $
+ * @version $Date$
  * @author Suguru ARAKAWA (Gluegent, Inc.)
  */
 public class NotInvocationPointcut implements InvocationPointcut {

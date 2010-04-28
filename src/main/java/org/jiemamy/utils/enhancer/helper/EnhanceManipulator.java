@@ -1172,7 +1172,7 @@ public class EnhanceManipulator {
 
 	/**
 	 * 同じ名前と仮引数型のリストを持つメソッドのグループ。
-	 * @version $Id: EnhanceManipulator.java 3739 2009-10-09 14:08:04Z ashigeru $
+	 * @version $Id$
 	 * @author Suguru ARAKAWA
 	 */
 	private static class MethodGroup {
@@ -1319,7 +1319,7 @@ public class EnhanceManipulator {
 	
 	/**
 	 * 名前とデスクリプタのペア。主にオーバーロード判定に利用する。
-	 * @version $Id: EnhanceManipulator.java 3739 2009-10-09 14:08:04Z ashigeru $
+	 * @version $Id$
 	 * @author Suguru ARAKAWA
 	 */
 	private static class NameAndParameter {

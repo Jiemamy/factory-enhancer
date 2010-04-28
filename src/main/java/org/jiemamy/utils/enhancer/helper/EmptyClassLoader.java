@@ -39,7 +39,7 @@ package org.jiemamy.utils.enhancer.helper;
  *     することができ、動的生成されたクラスによるメモリリークを防げる可能性がある。
  *   </li>
  * </ul>
- * @version $Date: 2009-09-21 02:27:46 +0900 (月, 21  9 2009) $
+ * @version $Date$
  * @author Suguru ARAKAWA (Gluegent, Inc.)
  */
 public class EmptyClassLoader extends ClassLoader {

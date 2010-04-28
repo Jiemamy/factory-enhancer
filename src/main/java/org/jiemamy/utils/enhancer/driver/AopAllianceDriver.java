@@ -130,7 +130,7 @@ public class AopAllianceDriver {
 	/**
 	 * {@link MethodInterceptor}をラップして{@link InvocationHandler}としての振る舞いを提供する。
 	 * 
-	 * @version $Id: AopAllianceDriver.java 3738 2009-10-09 10:03:38Z ashigeru $
+	 * @version $Id$
 	 * @author Suguru ARAKAWA
 	 */
 	private static class MethodInterceptorDriver implements InvocationHandler {
@@ -159,7 +159,7 @@ public class AopAllianceDriver {
 	/**
 	 * {@link ConstructorInterceptor}をラップして{@link InvocationHandler}としての振る舞いを提供する。
 	 * 
-	 * @version $Id: AopAllianceDriver.java 3738 2009-10-09 10:03:38Z ashigeru $
+	 * @version $Id$
 	 * @author Suguru ARAKAWA
 	 */
 	private static class ConstructorInterceptorDriver implements InvocationHandler {
@@ -195,7 +195,7 @@ public class AopAllianceDriver {
 	 * として提供しているようである。
 	 * このため、このクラスは抽象クラスとして提供し、そのサブクラスでそれぞれのインターフェースを実装している。
 	 * </p>
-	 * @version $Id: AopAllianceDriver.java 3738 2009-10-09 10:03:38Z ashigeru $
+	 * @version $Id$
 	 * @author Suguru ARAKAWA
 	 */
 	private abstract static class AbstractInvocationDriver implements org.aopalliance.intercept.Invocation {
@@ -232,7 +232,7 @@ public class AopAllianceDriver {
 	 * {@link org.jiemamy.utils.enhancer.Invocation}をラップして、
 	 * {@link MethodInvocation}としての振る舞いを提供する。
 	 * 
-	 * @version $Id: AopAllianceDriver.java 3738 2009-10-09 10:03:38Z ashigeru $
+	 * @version $Id$
 	 * @author Suguru ARAKAWA
 	 */
 	private static class MethodInvocationDriver extends AbstractInvocationDriver implements MethodInvocation {
@@ -267,7 +267,7 @@ public class AopAllianceDriver {
 	 * {@link org.jiemamy.utils.enhancer.Invocation}をラップして、
 	 * {@link ConstructorInvocation}としての振る舞いを提供する。
 	 * 
-	 * @version $Id: AopAllianceDriver.java 3738 2009-10-09 10:03:38Z ashigeru $
+	 * @version $Id$
 	 * @author Suguru ARAKAWA
 	 */
 	private static class ConstructorInvocationDriver extends AbstractInvocationDriver implements ConstructorInvocation {

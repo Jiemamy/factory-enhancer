@@ -20,7 +20,7 @@ package org.jiemamy.utils.enhancer;
 
 /**
  * 単純なプロダクト。
- * @version $Id: InterfaceProduct.java 3699 2009-10-04 11:33:48Z ashigeru $
+ * @version $Id$
  * @author Suguru ARAKAWA
  */
 public class ConcreteProduct {

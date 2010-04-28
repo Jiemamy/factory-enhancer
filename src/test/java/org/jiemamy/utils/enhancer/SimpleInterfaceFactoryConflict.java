@@ -20,7 +20,7 @@ package org.jiemamy.utils.enhancer;
 
 /**
  * 単純なインターフェースファクトリ。
- * @version $Id: SimpleInterfaceFactoryConflict.java 3737 2009-10-09 03:59:48Z ashigeru $
+ * @version $Id$
  * @author Suguru ARAKAWA
  */
 public interface SimpleInterfaceFactoryConflict extends SimpleInterfaceFactoryOverride, SimpleInterfaceFactory {

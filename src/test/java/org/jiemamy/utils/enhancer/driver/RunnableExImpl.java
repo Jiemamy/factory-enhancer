@@ -20,7 +20,7 @@ package org.jiemamy.utils.enhancer.driver;
 
 /**
  * {@link RunnableEx}の実装。
- * @version $Id: RunnableExImpl.java 3734 2009-10-08 13:05:37Z ashigeru $
+ * @version $Id$
  * @author Suguru ARAKAWA
  */
 public class RunnableExImpl implements RunnableEx {

@@ -20,7 +20,7 @@ package org.jiemamy.utils.enhancer;
 
 /**
  * {@code public}でないインターフェースを返す。
- * @version $Id: InterfaceReturnsNotPublic.java 3734 2009-10-08 13:05:37Z ashigeru $
+ * @version $Id$
  * @author Suguru ARAKAWA
  */
 public interface InterfaceReturnsNotPublic {

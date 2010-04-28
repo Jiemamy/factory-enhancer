@@ -41,7 +41,7 @@ import org.jiemamy.utils.enhancer.aspect.ThroughHandler;
 
 /**
  * Test for {@link FactoryEnhancer}.
- * @version $Date: 2009-10-08 22:05:37 +0900 (木, 08 10 2009) $
+ * @version $Date$
  * @author Suguru ARAKAWA (Gluegent, Inc.)
  */
 public class FactoryEnhancerTest {

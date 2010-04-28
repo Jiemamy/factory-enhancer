@@ -20,7 +20,7 @@ package org.jiemamy.utils.enhancer;
 
 /**
  * 単純なプロダクト。
- * @version $Id: InterfaceProductCharSequence.java 3739 2009-10-09 14:08:04Z ashigeru $
+ * @version $Id$
  * @author Suguru ARAKAWA
  */
 public interface InterfaceProductCharSequence {

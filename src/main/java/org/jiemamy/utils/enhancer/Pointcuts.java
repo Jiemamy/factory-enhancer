@@ -30,7 +30,7 @@ import org.jiemamy.utils.enhancer.helper.OrInvocationPointcut;
 
 /**
  * 一般的なポイントカット定義の一覧。
- * @version $Date: 2009-09-21 02:27:46 +0900 (月, 21  9 2009) $
+ * @version $Date$
  * @author Suguru ARAKAWA (Gluegent, Inc.)
  */
 public enum Pointcuts implements InvocationPointcut {

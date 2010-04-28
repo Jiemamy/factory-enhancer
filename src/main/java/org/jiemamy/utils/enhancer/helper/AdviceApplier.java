@@ -39,7 +39,7 @@ import org.jiemamy.utils.enhancer.InvocationHandler;
  * それぞれのオブジェクトに対して{@link #invoke(Object, Object[])}メソッドを呼び出すことで
  * インターセプトを実現する。
  * </p>
- * @version $Date: 2009-09-21 02:27:46 +0900 (月, 21  9 2009) $
+ * @version $Date$
  * @author Suguru ARAKAWA (Gluegent, Inc.)
  */
 public class AdviceApplier {
@@ -90,7 +90,7 @@ public class AdviceApplier {
 	 * <p>
 	 * 種類にあった{@link Invocation}オブジェクトを透過的に生成するために利用される。
 	 * </p>
-	 * @version $Date: 2009-09-21 02:27:46 +0900 (月, 21  9 2009) $
+	 * @version $Date$
 	 * @author Suguru ARAKAWA
 	 * @see MethodInvocation
 	 * @see ConstructorInvocation
@@ -109,7 +109,7 @@ public class AdviceApplier {
 	
 	/**
 	 * 特定のメソッドの宣言を表現するクラス。
-	 * @version $Date: 2009-09-21 02:27:46 +0900 (月, 21  9 2009) $
+	 * @version $Date$
 	 * @author Suguru ARAKAWA
 	 * @see MethodInvocation
 	 */

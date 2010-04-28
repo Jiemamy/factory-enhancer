@@ -20,7 +20,7 @@ package org.jiemamy.utils.enhancer;
 
 /**
  * 共変戻り値型を利用するプロダクトインターフェース。
- * @version $Id: InterfaceProductString.java 3739 2009-10-09 14:08:04Z ashigeru $
+ * @version $Id$
  * @author Suguru ARAKAWA
  */
 public interface InterfaceProductString extends InterfaceProductCharSequence {

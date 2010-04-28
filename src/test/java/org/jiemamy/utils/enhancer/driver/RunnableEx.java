@@ -20,7 +20,7 @@ package org.jiemamy.utils.enhancer.driver;
 
 /**
  * {@link Runnable}を拡張したインターフェース。
- * @version $Id: RunnableEx.java 3734 2009-10-08 13:05:37Z ashigeru $
+ * @version $Id$
  * @author Suguru ARAKAWA
  */
 public interface RunnableEx extends Runnable {

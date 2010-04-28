@@ -24,7 +24,7 @@ import javassist.CtClass;
  * <p>
  * 比較は{@link CtClass}の提供する完全限定名によって行う。
  * </p>
- * @version $Date: 2009-09-21 02:27:46 +0900 (月, 21  9 2009) $
+ * @version $Date$
  * @author Suguru ARAKAWA
  */
 public class CtClassComparator implements Comparator<CtClass> {

@@ -20,7 +20,7 @@ import java.lang.reflect.Member;
 
 /**
  * {@link InvocationHandler}が利用する本来の呼び出しを表現するオブジェクト。
- * @version $Date: 2009-10-08 22:05:37 +0900 (木, 08 10 2009) $
+ * @version $Date$
  * @author Suguru ARAKAWA (Gluegent, Inc.)
  */
 public interface Invocation {

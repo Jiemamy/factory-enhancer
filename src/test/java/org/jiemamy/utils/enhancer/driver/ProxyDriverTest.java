@@ -32,7 +32,7 @@ import org.jiemamy.utils.enhancer.Enhance;
 
 /**
  * Test for {@link ProxyDriver}.
- * @version $Id: ProxyDriverTest.java 3734 2009-10-08 13:05:37Z ashigeru $
+ * @version $Id$
  * @author Suguru ARAKAWA
  */
 public class ProxyDriverTest extends DriverTestRoot {

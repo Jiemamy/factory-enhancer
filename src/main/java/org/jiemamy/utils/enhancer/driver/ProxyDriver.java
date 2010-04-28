@@ -98,7 +98,7 @@ public class ProxyDriver {
 
 	/**
 	 * プロクシ作成の対象となるインターフェースプロダクト生成へのポイントカット。
-	 * @version $Date: 2009-10-09 19:03:38 +0900 (金, 09 10 2009) $
+	 * @version $Date$
 	 * @author Suguru ARAKAWA
 	 */
 	private static class ProxyPointcut implements InvocationPointcut {

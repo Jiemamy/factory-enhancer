@@ -40,7 +40,7 @@ import org.jiemamy.utils.enhancer.EnhanceException;
 /**
  * Javassistを利用して{@link java.lang.Class}と{@link javassist.CtClass}を相互に
  * 変換するためのライブラリ。
- * @version $Date: 2009-09-29 23:06:33 +0900 (火, 29  9 2009) $
+ * @version $Date$
  * @author Suguru ARAKAWA (Gluegent, Inc.)
  */
 public class JavassistConverter {

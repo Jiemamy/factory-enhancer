@@ -20,7 +20,7 @@ package org.jiemamy.utils.enhancer;
  * <p>
  * このインターフェースは、クライアントが実装してエンハンサに登録することができる。
  * </p>
- * @version $Date: 2009-09-29 23:06:33 +0900 (火, 29  9 2009) $
+ * @version $Date$
  * @author Suguru ARAKAWA (Gluegent, Inc.)
  */
 public interface InvocationHandler {

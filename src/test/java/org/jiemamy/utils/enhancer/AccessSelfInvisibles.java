@@ -17,7 +17,7 @@ package org.jiemamy.utils.enhancer;
 
 /**
  * 自身のメンバを様々な可視性で参照するテスト。
- * @version $Date: 2009-09-29 23:06:33 +0900 (火, 29  9 2009) $
+ * @version $Date$
  * @author Suguru ARAKAWA (Gluegent, Inc.)
  */
 public class AccessSelfInvisibles implements SingularFactory {
