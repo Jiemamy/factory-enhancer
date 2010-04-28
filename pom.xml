@@ -12,6 +12,10 @@
   <artifactId>factory-enhancer</artifactId>
   <name>Factory Enhancer</name>
   <version>0.2.0-SNAPSHOT</version>
+  <issueManagement>
+    <system>JIRA</system>
+    <url>http://jira.jiemamy.org/browse/FE</url>
+  </issueManagement>
   <ciManagement>
     <system>hudson</system>
     <url>http://hudson.jiemamy.org/job/factory-enhancer/</url>
