@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>org.jiemamy</groupId>
@@ -11,7 +9,7 @@
   <groupId>org.jiemamy</groupId>
   <artifactId>factory-enhancer</artifactId>
   <name>Factory Enhancer</name>
-  <version>0.2.0-SNAPSHOT</version>
+  <version>0.2.0</version>
   <issueManagement>
     <system>JIRA</system>
     <url>http://jira.jiemamy.org/browse/FE</url>
@@ -39,9 +37,9 @@
     </developer>
   </developers>
   <scm>
-    <connection>scm:svn:http://svn.jiemamy.org/products/leto/factory-enhancer/trunk</connection>
-    <developerConnection>scm:svn:http://svn.jiemamy.org/products/leto/factory-enhancer/trunk</developerConnection>
-    <url>http://fisheye.jiemamy.org/browse/leto/factory-enhancer/trunk</url>
+    <connection>scm:svn:http://svn.jiemamy.org/products/leto/factory-enhancer/tags/factory-enhancer-0.2.0</connection>
+    <developerConnection>scm:svn:http://svn.jiemamy.org/products/leto/factory-enhancer/tags/factory-enhancer-0.2.0</developerConnection>
+    <url>http://fisheye.jiemamy.org/browse/leto/factory-enhancer/tags/factory-enhancer-0.2.0</url>
   </scm>
   <repositories>
     <repository>
