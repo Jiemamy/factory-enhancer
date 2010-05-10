@@ -23,6 +23,7 @@ package org.jiemamy.utils.enhancer;
  * @version $Id$
  * @author Suguru ARAKAWA
  */
+@SuppressWarnings("unused")
 public interface SimpleInterfaceFactoryConflict extends SimpleInterfaceFactoryOverride, SimpleInterfaceFactory {
 	
 }

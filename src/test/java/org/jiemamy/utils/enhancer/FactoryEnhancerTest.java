@@ -67,6 +67,7 @@ public class FactoryEnhancerTest {
 	 * 拡張する対象のファクトリクラスは、 publicで宣言される具象クラスでなければならない。
 	 * @throws Exception if occur
 	 */
+	@SuppressWarnings("unused")
 	@Test(expected = IllegalArgumentException.class)
 	public void testFactoryEnhancer_ImplementationIsAbstract() throws Exception {
 		new FactoryEnhancer<EmptyFactory>(EmptyFactory.class, EmptyFactoryAbstract.class, enhances());
@@ -77,6 +78,7 @@ public class FactoryEnhancerTest {
 	 * 拡張する対象のファクトリクラスは、 publicで宣言される具象クラスでなければならない。
 	 * @throws Exception if occur
 	 */
+	@SuppressWarnings("unused")
 	@Test(expected = IllegalArgumentException.class)
 	public void testFactoryEnhancer_ImplementationIsEnum() throws Exception {
 		new FactoryEnhancer<EmptyFactory>(EmptyFactory.class, EmptyFactoryEnum.class, enhances());
@@ -86,6 +88,7 @@ public class FactoryEnhancerTest {
 	 * Test method for {@link FactoryEnhancer#FactoryEnhancer(Class, Class, List)}.
 	 * @throws Exception if occur
 	 */
+	@SuppressWarnings("unused")
 	@Test(expected = IllegalArgumentException.class)
 	public void testFactoryEnhancer_ImplementationIsInterface() throws Exception {
 		new FactoryEnhancer<EmptyFactory>(EmptyFactory.class, EmptyFactoryInterface.class, enhances());
@@ -95,6 +98,7 @@ public class FactoryEnhancerTest {
 	 * Test method for {@link FactoryEnhancer#FactoryEnhancer(Class, Class, List)}.
 	 * @throws Exception if occur
 	 */
+	@SuppressWarnings("unused")
 	@Test(expected = IllegalArgumentException.class)
 	public void testFactoryEnhancer_ImplementationIsNoExtended() throws Exception {
 		new FactoryEnhancer<EmptyFactory>(EmptyFactory.class, EmptyFactoryExtended.class, enhances());
@@ -105,6 +109,7 @@ public class FactoryEnhancerTest {
 	 * 拡張する対象のファクトリクラスは、 publicで宣言される具象クラスでなければならない。
 	 * @throws Exception if occur
 	 */
+	@SuppressWarnings("unused")
 	@Test(expected = IllegalArgumentException.class)
 	public void testFactoryEnhancer_ImplementationIsPackagePrivate() throws Exception {
 		new FactoryEnhancer<EmptyFactory>(EmptyFactory.class, EmptyFactoryPackagePrivate.class, enhances());
@@ -114,6 +119,7 @@ public class FactoryEnhancerTest {
 	 * Test method for {@link FactoryEnhancer#FactoryEnhancer(Class, Class, List)}.
 	 * @throws Exception if occur
 	 */
+	@SuppressWarnings("unused")
 	@Test(expected = IllegalArgumentException.class)
 	public void testFactoryEnhancer_InterfaceIsAnnotation() throws Exception {
 		Override override = new Override() {
@@ -129,6 +135,7 @@ public class FactoryEnhancerTest {
 	 * Test method for {@link FactoryEnhancer#FactoryEnhancer(Class, Class, List)}.
 	 * @throws Exception if occur
 	 */
+	@SuppressWarnings("unused")
 	@Test(expected = IllegalArgumentException.class)
 	public void testFactoryEnhancer_InterfaceIsClass() throws Exception {
 		new FactoryEnhancer<EmptyFactoryClass>(EmptyFactoryClass.class, EmptyFactoryClass.class, enhances());
@@ -139,6 +146,7 @@ public class FactoryEnhancerTest {
 	 * 拡張する対象のファクトリクラスは、明示的な親クラスを持つことができない
 	 * @throws Exception if occur
 	 */
+	@SuppressWarnings("unused")
 	@Test(expected = IllegalArgumentException.class)
 	public void testFactoryEnhancer_NoExplicitSupertype() throws Exception {
 		new FactoryEnhancer<EmptyFactory>(EmptyFactory.class, EmptyFactoryExtended.class, enhances());
@@ -155,7 +163,7 @@ public class FactoryEnhancerTest {
 		Enhance enhance = new Enhance(new StringParameterPointcut(), new BeforeStringInsertHandler("!"));
 		FactoryEnhancer<SingularFactory> enhancer =
 				new FactoryEnhancer<SingularFactory>(SingularFactory.class, SingularFactoryNoPublicProduct.class,
-				enhance);
+						enhance);
 		SingularFactory factory = enhancer.getFactory().newInstance();
 		factory.newInstance();
 	}
@@ -259,7 +267,6 @@ public class FactoryEnhancerTest {
 	 * さらに、コンパイラによって合成された特殊なメソッド(ブリッジメソッド等)は拡張対象とならない。
 	 * @throws Exception if occur
 	 */
-	@SuppressWarnings("unchecked")
 	@Test
 	public void testGetEnhanced_BridgeProductMethod() throws Exception {
 		Enhance enhance = new Enhance(new IntResultPointcut(), new AfterIntIncrementHandler());
@@ -272,7 +279,7 @@ public class FactoryEnhancerTest {
 		// bareComparable.compareTo
 		// --> HasBridge.compareTo(Object)    -- Compiler Synthetic
 		//   --> HasBridge.compareTo(Bridge)  -- User Declared
-		Comparable bareComparable = bridge;
+		Comparable<HasBridge> bareComparable = bridge;
 		assertThat(bareComparable.compareTo(bridge), is(1));
 	}
 	
@@ -337,7 +344,7 @@ public class FactoryEnhancerTest {
 	public void testGetEnhanced_FinalProductClass() throws Exception {
 		Enhance enhance =
 				new Enhance(and(or(new ClassSuffixPointcut("Product1"), new ClassSuffixPointcut("ProductFinal")),
-				new StringParameterPointcut()), new BeforeStringInsertHandler("!"));
+						new StringParameterPointcut()), new BeforeStringInsertHandler("!"));
 		FactoryEnhancer<TargetFactory> enhancer =
 				new FactoryEnhancer<TargetFactory>(TargetFactory.class, TargetFactoryImpl.class, enhance);
 		Class<? extends TargetFactory> enhanced = enhancer.getEnhanced();
@@ -373,7 +380,11 @@ public class FactoryEnhancerTest {
 	 * 拡張する対象のファクトリクラスは、必ず何らかのインターフェースを実装しなければならない
 	 * @throws Exception if occur
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({
+		"unchecked",
+		"rawtypes",
+		"unused"
+	})
 	@Test(expected = IllegalArgumentException.class)
 	public void testGetEnhanced_HasInterface() throws Exception {
 		new FactoryEnhancer(EmptyFactory.class, IndependentFactoryImpl.class, enhances());
@@ -475,7 +486,7 @@ public class FactoryEnhancerTest {
 	public void testGetEnhanced_ProductMethodArguments() throws Exception {
 		FactoryEnhancer<TargetFactory> enhancer =
 				new FactoryEnhancer<TargetFactory>(TargetFactory.class, TargetFactoryImpl.class, new Enhance(
-				new StringParameterPointcut(), new BeforeStringInsertHandler("!")));
+						new StringParameterPointcut(), new BeforeStringInsertHandler("!")));
 		Class<? extends TargetFactory> enhanced = enhancer.getEnhanced();
 		TargetFactory factory = enhanced.newInstance();
 		TargetProduct1 p1 = factory.newProduct1();
@@ -497,7 +508,7 @@ public class FactoryEnhancerTest {
 	public void testGetEnhanced_ProductMethodResults() throws Exception {
 		FactoryEnhancer<TargetFactory> enhancer =
 				new FactoryEnhancer<TargetFactory>(TargetFactory.class, TargetFactoryImpl.class, new Enhance(
-				new StringResultPointcut(), new AfterStringAppendHandler("!")));
+						new StringResultPointcut(), new AfterStringAppendHandler("!")));
 		Class<? extends TargetFactory> enhanced = enhancer.getEnhanced();
 		TargetFactory factory = enhanced.newInstance();
 		assertThat(factory.newProduct1("a"), is(p1("a")));
@@ -533,10 +544,10 @@ public class FactoryEnhancerTest {
 	public void testGetEnhanced_SelectedMethod() throws Exception {
 		Enhance before =
 				new Enhance(and(new ClassSuffixPointcut("Product2"), new StringParameterPointcut()),
-				new BeforeStringInsertHandler("!"));
+						new BeforeStringInsertHandler("!"));
 		Enhance after =
 				new Enhance(and(new ClassSuffixPointcut("Product3"), new StringResultPointcut()),
-				new AfterStringAppendHandler("!"));
+						new AfterStringAppendHandler("!"));
 		FactoryEnhancer<TargetFactory> enhancer =
 				new FactoryEnhancer<TargetFactory>(TargetFactory.class, TargetFactoryImpl.class, before, after);
 		Class<? extends TargetFactory> enhanced = enhancer.getEnhanced();
@@ -600,7 +611,7 @@ public class FactoryEnhancerTest {
 	public void testGetEnhanced_SingleConstructor() throws Exception {
 		Enhance enhance =
 				new Enhance(and(new ClassSuffixPointcut("Product1"), new StringParameterPointcut()),
-				new BeforeStringInsertHandler("!"));
+						new BeforeStringInsertHandler("!"));
 		FactoryEnhancer<TargetFactory> enhancer =
 				new FactoryEnhancer<TargetFactory>(TargetFactory.class, TargetFactoryImpl.class, enhance);
 		Class<? extends TargetFactory> enhanced = enhancer.getEnhanced();
@@ -633,7 +644,7 @@ public class FactoryEnhancerTest {
 	private TargetFactory enhancedProduct1() throws Exception {
 		Enhance enhance =
 				new Enhance(and(new ClassSuffixPointcut("Product1"), new StringResultPointcut()),
-				new AfterStringAppendHandler("!"));
+						new AfterStringAppendHandler("!"));
 		FactoryEnhancer<TargetFactory> enhancer =
 				new FactoryEnhancer<TargetFactory>(TargetFactory.class, TargetFactoryImpl.class, enhance);
 		Class<? extends TargetFactory> enhanced = enhancer.getEnhanced();
