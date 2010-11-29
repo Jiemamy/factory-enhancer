@@ -40,6 +40,7 @@ public class ArrayFactoryImpl implements ArrayFactory {
 		return new String[0][];
 	}
 	
+	@SuppressWarnings("unused")
 	public TargetComponent[] newProductArray() {
 		new TargetComponent();
 		return new TargetComponent[0];

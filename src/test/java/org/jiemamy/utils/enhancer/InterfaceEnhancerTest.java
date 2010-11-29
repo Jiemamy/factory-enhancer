@@ -47,28 +47,8 @@ import org.jiemamy.utils.enhancer.aspect.ThroughHandler;
  */
 public class InterfaceEnhancerTest {
 	
-	/**
-	 * Test method for {@link AbstractEnhancer#getFactory()}.
-	 * @throws Exception if occur
-	 */
-	@Test
-	public void testGetFactory_NoEnhance() throws Exception {
-		// 何もエンハンスしない
-		InterfaceEnhancer<SimpleInterfaceFactory> enhancer = new InterfaceEnhancer<SimpleInterfaceFactory>(
-				SimpleInterfaceFactory.class,
-				Object.class,
-				enhances());
-		Factory<? extends SimpleInterfaceFactory> metaFactory = enhancer.getFactory();
-		SimpleInterfaceFactory factory = metaFactory.newInstance();
-		
-		// getMessage()が実装されないので、AbstractMethodErrorになる
-		InterfaceProduct product = factory.newProduct();
-		try {
-			product.getMessage();
-			fail();
-		} catch (AbstractMethodError e) {
-			// ok.
-		}
+	private static Enhance[] enhances(Enhance... enhances) {
+		return enhances;
 	}
 	
 	/**
@@ -84,10 +64,9 @@ public class InterfaceEnhancerTest {
 				return "Hello";
 			}
 		});
-		InterfaceEnhancer<SimpleInterfaceFactory> enhancer = new InterfaceEnhancer<SimpleInterfaceFactory>(
-				SimpleInterfaceFactory.class,
-				Object.class,
-				enhances(enhance));
+		InterfaceEnhancer<SimpleInterfaceFactory> enhancer =
+				new InterfaceEnhancer<SimpleInterfaceFactory>(SimpleInterfaceFactory.class, Object.class,
+						enhances(enhance));
 		Factory<? extends SimpleInterfaceFactory> metaFactory = enhancer.getFactory();
 		SimpleInterfaceFactory factory = metaFactory.newInstance();
 		InterfaceProduct product = factory.newProduct();
@@ -97,25 +76,6 @@ public class InterfaceEnhancerTest {
 		
 		// ついでにStringを返すtoString()が上書きされる
 		assertThat(product.toString(), is("Hello"));
-	}
-	
-	/**
-	 * Test method for {@link AbstractEnhancer#getFactory()}.
-	 * @throws Exception if occur
-	 */
-	@Test
-	public void testGetFactory_Inherit() throws Exception {
-		// 何もエンハンスしないが、かわりに getMessage() を実装する親クラス ConcreteProduct を指定してやる
-		InterfaceEnhancer<SimpleInterfaceFactory> enhancer = new InterfaceEnhancer<SimpleInterfaceFactory>(
-				SimpleInterfaceFactory.class,
-				ConcreteProduct.class,
-				enhances());
-		Factory<? extends SimpleInterfaceFactory> metaFactory = enhancer.getFactory();
-		SimpleInterfaceFactory factory = metaFactory.newInstance();
-		
-		// InterfaceProduct.getMessage() が ConcreteProduct のメソッドに束縛される
-		InterfaceProduct product = factory.newProduct();
-		assertThat(product.getMessage(), is("Concrete"));
 	}
 	
 	/**
@@ -161,10 +121,8 @@ public class InterfaceEnhancerTest {
 				}
 			}
 		});
-		InterfaceEnhancer<SimpleInterfaceFactory> enhancer = new InterfaceEnhancer<SimpleInterfaceFactory>(
-				factoryInterface,
-				productSuperClass,
-				enhances(enhance));
+		InterfaceEnhancer<SimpleInterfaceFactory> enhancer =
+				new InterfaceEnhancer<SimpleInterfaceFactory>(factoryInterface, productSuperClass, enhances(enhance));
 		Factory<? extends SimpleInterfaceFactory> metaFactory = enhancer.getFactory();
 		SimpleInterfaceFactory factory = metaFactory.newInstance();
 		InterfaceProduct product = factory.newProduct();
@@ -183,40 +141,15 @@ public class InterfaceEnhancerTest {
 	 * @throws Exception if occur
 	 */
 	@Test
-	public void testGetFactory_ParameterConflict() throws Exception {
-		Enhance enhance = new Enhance(new StringResultPointcut(), new InvocationHandler() {
-			
-			public Object handle(Invocation invocation) {
-				return "Hello";
-			}
-		});
-		InterfaceEnhancer<ParameterConflictInterfaceFactory> enhancer =
-				new InterfaceEnhancer<ParameterConflictInterfaceFactory>(
-				ParameterConflictInterfaceFactory.class,
-				Object.class,
-				enhances(enhance));
-		Factory<? extends ParameterConflictInterfaceFactory> metaFactory = enhancer.getFactory();
-		ParameterConflictInterfaceFactory factory = metaFactory.newInstance();
-		
-		InterfaceProduct p1 = factory.new1(1);
-		InterfaceProduct p2 = factory.new1(2);
-		assertThat(p1.getMessage(), is("Hello"));
-		assertThat(p2.getMessage(), is("Hello"));
-	}
-	
-	/**
-	 * Test method for {@link org.jiemamy.utils.enhancer.AbstractEnhancer#getFactory()}.
-	 * @throws Exception if occur
-	 */
-	@Test
-	public void testGetFactory_Through() throws Exception {
-		Enhance enhance = new Enhance(new StringResultPointcut(), new ThroughHandler());
-		InterfaceEnhancer<SimpleInterfaceFactory> enhancer = new InterfaceEnhancer<SimpleInterfaceFactory>(
-				SimpleInterfaceFactory.class,
-				ConcreteProduct.class,
-				enhances(enhance));
+	public void testGetFactory_Inherit() throws Exception {
+		// 何もエンハンスしないが、かわりに getMessage() を実装する親クラス ConcreteProduct を指定してやる
+		InterfaceEnhancer<SimpleInterfaceFactory> enhancer =
+				new InterfaceEnhancer<SimpleInterfaceFactory>(SimpleInterfaceFactory.class, ConcreteProduct.class,
+						enhances());
 		Factory<? extends SimpleInterfaceFactory> metaFactory = enhancer.getFactory();
 		SimpleInterfaceFactory factory = metaFactory.newInstance();
+		
+		// InterfaceProduct.getMessage() が ConcreteProduct のメソッドに束縛される
 		InterfaceProduct product = factory.newProduct();
 		assertThat(product.getMessage(), is("Concrete"));
 	}
@@ -239,10 +172,9 @@ public class InterfaceEnhancerTest {
 				throw new AssertionError();
 			}
 		});
-		InterfaceEnhancer<SimpleInterfaceFactoryEx> enhancer = new InterfaceEnhancer<SimpleInterfaceFactoryEx>(
-				SimpleInterfaceFactoryEx.class,
-				Object.class,
-				enhances(enhance));
+		InterfaceEnhancer<SimpleInterfaceFactoryEx> enhancer =
+				new InterfaceEnhancer<SimpleInterfaceFactoryEx>(SimpleInterfaceFactoryEx.class, Object.class,
+						enhances(enhance));
 		Factory<? extends SimpleInterfaceFactoryEx> metaFactory = enhancer.getFactory();
 		SimpleInterfaceFactoryEx factory = metaFactory.newInstance();
 		
@@ -255,37 +187,25 @@ public class InterfaceEnhancerTest {
 	}
 	
 	/**
-	 * Test method for {@link org.jiemamy.utils.enhancer.AbstractEnhancer#getFactory()}.
+	 * Test method for {@link AbstractEnhancer#getFactory()}.
 	 * @throws Exception if occur
 	 */
 	@Test
-	public void testGetFactory_OverrideWithReturnSubType() throws Exception {
-		Enhance enhance = new Enhance(new StringResultPointcut(), new InvocationHandler() {
-			
-			public Object handle(Invocation invocation) {
-				if (invocation.getInvoker() instanceof InterfaceProductEx) {
-					return "inherited";
-				}
-				if (invocation.getInvoker() instanceof InterfaceProduct) {
-					return "base";
-				}
-				throw new AssertionError();
-			}
-		});
-		InterfaceEnhancer<SimpleInterfaceFactoryOverride> enhancer =
-				new InterfaceEnhancer<SimpleInterfaceFactoryOverride>(
-				SimpleInterfaceFactoryOverride.class,
-				Object.class,
-				enhances(enhance));
-		Factory<? extends SimpleInterfaceFactoryOverride> metaFactory = enhancer.getFactory();
-		SimpleInterfaceFactoryOverride factory = metaFactory.newInstance();
+	public void testGetFactory_NoEnhance() throws Exception {
+		// 何もエンハンスしない
+		InterfaceEnhancer<SimpleInterfaceFactory> enhancer =
+				new InterfaceEnhancer<SimpleInterfaceFactory>(SimpleInterfaceFactory.class, Object.class, enhances());
+		Factory<? extends SimpleInterfaceFactory> metaFactory = enhancer.getFactory();
+		SimpleInterfaceFactory factory = metaFactory.newInstance();
 		
-		InterfaceProductEx productEx = factory.newProduct();
-		assertThat(productEx.getMessage(), is("inherited"));
-		assertThat(productEx.getMessageEx(), is("inherited"));
-		
-		InterfaceProduct product = productEx;
-		assertThat(product.getMessage(), is("inherited"));
+		// getMessage()が実装されないので、AbstractMethodErrorになる
+		InterfaceProduct product = factory.newProduct();
+		try {
+			product.getMessage();
+			fail();
+		} catch (AbstractMethodError e) {
+			// ok.
+		}
 	}
 	
 	/**
@@ -307,10 +227,8 @@ public class InterfaceEnhancerTest {
 			}
 		});
 		InterfaceEnhancer<SimpleInterfaceFactoryConflict> enhancer =
-				new InterfaceEnhancer<SimpleInterfaceFactoryConflict>(
-				SimpleInterfaceFactoryConflict.class,
-				Object.class,
-				enhances(enhance));
+				new InterfaceEnhancer<SimpleInterfaceFactoryConflict>(SimpleInterfaceFactoryConflict.class,
+						Object.class, enhances(enhance));
 		Factory<? extends SimpleInterfaceFactoryConflict> metaFactory = enhancer.getFactory();
 		SimpleInterfaceFactoryConflict factory = metaFactory.newInstance();
 		
@@ -327,6 +245,62 @@ public class InterfaceEnhancerTest {
 	 * @throws Exception if occur
 	 */
 	@Test
+	public void testGetFactory_OverrideWithReturnSubType() throws Exception {
+		Enhance enhance = new Enhance(new StringResultPointcut(), new InvocationHandler() {
+			
+			public Object handle(Invocation invocation) {
+				if (invocation.getInvoker() instanceof InterfaceProductEx) {
+					return "inherited";
+				}
+				if (invocation.getInvoker() instanceof InterfaceProduct) {
+					return "base";
+				}
+				throw new AssertionError();
+			}
+		});
+		InterfaceEnhancer<SimpleInterfaceFactoryOverride> enhancer =
+				new InterfaceEnhancer<SimpleInterfaceFactoryOverride>(SimpleInterfaceFactoryOverride.class,
+						Object.class, enhances(enhance));
+		Factory<? extends SimpleInterfaceFactoryOverride> metaFactory = enhancer.getFactory();
+		SimpleInterfaceFactoryOverride factory = metaFactory.newInstance();
+		
+		InterfaceProductEx productEx = factory.newProduct();
+		assertThat(productEx.getMessage(), is("inherited"));
+		assertThat(productEx.getMessageEx(), is("inherited"));
+		
+		InterfaceProduct product = productEx;
+		assertThat(product.getMessage(), is("inherited"));
+	}
+	
+	/**
+	 * Test method for {@link AbstractEnhancer#getFactory()}.
+	 * @throws Exception if occur
+	 */
+	@Test
+	public void testGetFactory_ParameterConflict() throws Exception {
+		Enhance enhance = new Enhance(new StringResultPointcut(), new InvocationHandler() {
+			
+			public Object handle(Invocation invocation) {
+				return "Hello";
+			}
+		});
+		InterfaceEnhancer<ParameterConflictInterfaceFactory> enhancer =
+				new InterfaceEnhancer<ParameterConflictInterfaceFactory>(ParameterConflictInterfaceFactory.class,
+						Object.class, enhances(enhance));
+		Factory<? extends ParameterConflictInterfaceFactory> metaFactory = enhancer.getFactory();
+		ParameterConflictInterfaceFactory factory = metaFactory.newInstance();
+		
+		InterfaceProduct p1 = factory.new1(1);
+		InterfaceProduct p2 = factory.new1(2);
+		assertThat(p1.getMessage(), is("Hello"));
+		assertThat(p2.getMessage(), is("Hello"));
+	}
+	
+	/**
+	 * Test method for {@link org.jiemamy.utils.enhancer.AbstractEnhancer#getFactory()}.
+	 * @throws Exception if occur
+	 */
+	@Test
 	public void testGetFactory_ProductConflictReturnSubType() throws Exception {
 		Enhance enhance = new Enhance(new StringResultPointcut(), new InvocationHandler() {
 			
@@ -335,10 +309,8 @@ public class InterfaceEnhancerTest {
 			}
 		});
 		InterfaceEnhancer<InterfaceFactoryProductConflict> enhancer =
-				new InterfaceEnhancer<InterfaceFactoryProductConflict>(
-				InterfaceFactoryProductConflict.class,
-				Object.class,
-				enhances(enhance));
+				new InterfaceEnhancer<InterfaceFactoryProductConflict>(InterfaceFactoryProductConflict.class,
+						Object.class, enhances(enhance));
 		Factory<? extends InterfaceFactoryProductConflict> metaFactory = enhancer.getFactory();
 		InterfaceFactoryProductConflict factory = metaFactory.newInstance();
 		
@@ -346,36 +318,6 @@ public class InterfaceEnhancerTest {
 		InterfaceProductCharSequence productCharSequence = productString;
 		assertThat(productString.getMessage(), is("Hello"));
 		assertThat(productCharSequence.getMessage(), is((CharSequence) "Hello"));
-	}
-	
-	/**
-	 * Test method for {@link org.jiemamy.utils.enhancer.AbstractEnhancer#getFactory()}.
-	 * TODO 仮引数型に型引数を直接とる(パラメータ化型ではなく、型変数をそのまま使う)インターフェースを継承し、
-	 * そのメソッドをオーバーライドしなかった場合にブリッジメソッドを作るかどうか。
-	 * @throws Exception if occur
-	 */
-	@Ignore
-	@Test
-	public void testGetFactory_ProductTypeVariableReificationImplicit() throws Exception {
-		Enhance enhance = new Enhance(new StringParameterPointcut(), new InvocationHandler() {
-			
-			public Object handle(Invocation invocation) {
-				return false;
-			}
-		});
-		InterfaceEnhancer<InterfaceListFactory> enhancer =
-				new InterfaceEnhancer<InterfaceListFactory>(
-				InterfaceListFactory.class,
-				Object.class,
-				enhances(enhance));
-		Factory<? extends InterfaceListFactory> metaFactory = enhancer.getFactory();
-		InterfaceListFactory factory = metaFactory.newInstance();
-		
-		ExtendsListImplicit product = factory.newImplicit();
-		assertThat(product.add("Hello"), is(false));
-		
-		List<String> list = factory.newImplicit();
-		assertThat(list.add("Hello"), is(false));
 	}
 	
 	/**
@@ -394,10 +336,7 @@ public class InterfaceEnhancerTest {
 			}
 		});
 		InterfaceEnhancer<InterfaceListFactory> enhancer =
-				new InterfaceEnhancer<InterfaceListFactory>(
-				InterfaceListFactory.class,
-				Object.class,
-				enhances(enhance));
+				new InterfaceEnhancer<InterfaceListFactory>(InterfaceListFactory.class, Object.class, enhances(enhance));
 		Factory<? extends InterfaceListFactory> metaFactory = enhancer.getFactory();
 		InterfaceListFactory factory = metaFactory.newInstance();
 		
@@ -409,127 +348,149 @@ public class InterfaceEnhancerTest {
 	}
 	
 	/**
-	 * Test method for {@link InterfaceEnhancer#InterfaceEnhancer(java.lang.Class, java.lang.Class, java.util.List)}.
+	 * Test method for {@link org.jiemamy.utils.enhancer.AbstractEnhancer#getFactory()}.
+	 * TODO 仮引数型に型引数を直接とる(パラメータ化型ではなく、型変数をそのまま使う)インターフェースを継承し、
+	 * そのメソッドをオーバーライドしなかった場合にブリッジメソッドを作るかどうか。
+	 * @throws Exception if occur
 	 */
-	@Test(expected = IllegalArgumentException.class)
-	public void testInterfaceEnhancer_FactoryNotPublic() {
-		new InterfaceEnhancer<InterfaceNotPublic>(
-				InterfaceNotPublic.class,
-				Object.class,
-				enhances());
+	@Ignore
+	@Test
+	public void testGetFactory_ProductTypeVariableReificationImplicit() throws Exception {
+		Enhance enhance = new Enhance(new StringParameterPointcut(), new InvocationHandler() {
+			
+			public Object handle(Invocation invocation) {
+				return false;
+			}
+		});
+		InterfaceEnhancer<InterfaceListFactory> enhancer =
+				new InterfaceEnhancer<InterfaceListFactory>(InterfaceListFactory.class, Object.class, enhances(enhance));
+		Factory<? extends InterfaceListFactory> metaFactory = enhancer.getFactory();
+		InterfaceListFactory factory = metaFactory.newInstance();
+		
+		ExtendsListImplicit product = factory.newImplicit();
+		assertThat(product.add("Hello"), is(false));
+		
+		List<String> list = factory.newImplicit();
+		assertThat(list.add("Hello"), is(false));
+	}
+	
+	/**
+	 * Test method for {@link org.jiemamy.utils.enhancer.AbstractEnhancer#getFactory()}.
+	 * @throws Exception if occur
+	 */
+	@Test
+	public void testGetFactory_Through() throws Exception {
+		Enhance enhance = new Enhance(new StringResultPointcut(), new ThroughHandler());
+		InterfaceEnhancer<SimpleInterfaceFactory> enhancer =
+				new InterfaceEnhancer<SimpleInterfaceFactory>(SimpleInterfaceFactory.class, ConcreteProduct.class,
+						enhances(enhance));
+		Factory<? extends SimpleInterfaceFactory> metaFactory = enhancer.getFactory();
+		SimpleInterfaceFactory factory = metaFactory.newInstance();
+		InterfaceProduct product = factory.newProduct();
+		assertThat(product.getMessage(), is("Concrete"));
 	}
 	
 	/**
 	 * Test method for {@link InterfaceEnhancer#InterfaceEnhancer(java.lang.Class, java.lang.Class, java.util.List)}.
 	 */
+	@SuppressWarnings("unused")
 	@Test(expected = IllegalArgumentException.class)
 	public void testInterfaceEnhancer_FactoryNotInterface() {
-		new InterfaceEnhancer<Object>(
-				Object.class,
-				Object.class,
-				enhances());
+		new InterfaceEnhancer<Object>(Object.class, Object.class, enhances());
 	}
 	
 	/**
 	 * Test method for {@link InterfaceEnhancer#InterfaceEnhancer(java.lang.Class, java.lang.Class, java.util.List)}.
 	 */
+	@SuppressWarnings("unused")
+	@Test(expected = IllegalArgumentException.class)
+	public void testInterfaceEnhancer_FactoryNotPublic() {
+		new InterfaceEnhancer<InterfaceNotPublic>(InterfaceNotPublic.class, Object.class, enhances());
+	}
+	
+	/**
+	 * Test method for {@link InterfaceEnhancer#InterfaceEnhancer(java.lang.Class, java.lang.Class, java.util.List)}.
+	 */
+	@SuppressWarnings("unused")
 	@Test(expected = IllegalArgumentException.class)
 	public void testInterfaceEnhancer_FactoryNotReturnsInterface() {
-		new InterfaceEnhancer<InterfaceReturnsNotInterface>(
-				InterfaceReturnsNotInterface.class,
-				Object.class,
+		new InterfaceEnhancer<InterfaceReturnsNotInterface>(InterfaceReturnsNotInterface.class, Object.class,
 				enhances());
 	}
 	
 	/**
 	 * Test method for {@link InterfaceEnhancer#InterfaceEnhancer(java.lang.Class, java.lang.Class, java.util.List)}.
 	 */
+	@SuppressWarnings("unused")
 	@Test(expected = IllegalArgumentException.class)
 	public void testInterfaceEnhancer_FactoryNotReturnsPublic() {
-		new InterfaceEnhancer<InterfaceReturnsNotPublic>(
-				InterfaceReturnsNotPublic.class,
-				Object.class,
-				enhances());
+		new InterfaceEnhancer<InterfaceReturnsNotPublic>(InterfaceReturnsNotPublic.class, Object.class, enhances());
 	}
 	
 	/**
 	 * Test method for {@link InterfaceEnhancer#InterfaceEnhancer(java.lang.Class, java.lang.Class, java.util.List)}.
 	 */
-	@Test(expected = IllegalArgumentException.class)
-	public void testInterfaceEnhancer_ProductNotPublic() {
-		new InterfaceEnhancer<SimpleInterfaceFactory>(
-				SimpleInterfaceFactory.class,
-				ClassNotPublic.class,
-				enhances());
-	}
-	
-	/**
-	 * Test method for {@link InterfaceEnhancer#InterfaceEnhancer(java.lang.Class, java.lang.Class, java.util.List)}.
-	 */
-	@Test(expected = IllegalArgumentException.class)
-	public void testInterfaceEnhancer_ProductNotConcrete() {
-		new InterfaceEnhancer<SimpleInterfaceFactory>(
-				SimpleInterfaceFactory.class,
-				EmptyFactoryAbstract.class,
-				enhances());
-	}
-	
-	/**
-	 * Test method for {@link InterfaceEnhancer#InterfaceEnhancer(java.lang.Class, java.lang.Class, java.util.List)}.
-	 */
-	@Test(expected = IllegalArgumentException.class)
-	public void testInterfaceEnhancer_ProductNotInheritable() {
-		new InterfaceEnhancer<SimpleInterfaceFactory>(
-				SimpleInterfaceFactory.class,
-				EmptyFactoryFinal.class,
-				enhances());
-	}
-	
-	/**
-	 * Test method for {@link InterfaceEnhancer#InterfaceEnhancer(java.lang.Class, java.lang.Class, java.util.List)}.
-	 */
-	@Test(expected = IllegalArgumentException.class)
-	public void testInterfaceEnhancer_ProductNotClass() {
-		new InterfaceEnhancer<SimpleInterfaceFactory>(
-				SimpleInterfaceFactory.class,
-				SimpleInterfaceFactory.class,
-				enhances());
-	}
-	
-	/**
-	 * Test method for {@link InterfaceEnhancer#InterfaceEnhancer(java.lang.Class, java.lang.Class, java.util.List)}.
-	 */
-	@Test(expected = IllegalArgumentException.class)
-	public void testInterfaceEnhancer_ProductNotNormalClass() {
-		new InterfaceEnhancer<SimpleInterfaceFactory>(
-				SimpleInterfaceFactory.class,
-				EmptyFactoryEnum.class,
-				enhances());
-	}
-	
-	/**
-	 * Test method for {@link InterfaceEnhancer#InterfaceEnhancer(java.lang.Class, java.lang.Class, java.util.List)}.
-	 */
-	@Test(expected = IllegalArgumentException.class)
-	public void testInterfaceEnhancer_ProductDefaultConstructor() {
-		new InterfaceEnhancer<SimpleInterfaceFactory>(
-				SimpleInterfaceFactory.class,
-				ClassNoDefaultConstructor.class,
-				enhances());
-	}
-	
-	/**
-	 * Test method for {@link InterfaceEnhancer#InterfaceEnhancer(java.lang.Class, java.lang.Class, java.util.List)}.
-	 */
+	@SuppressWarnings("unused")
 	@Test(expected = IllegalArgumentException.class)
 	public void testInterfaceEnhancer_ProductConstructorNotPublic() {
-		new InterfaceEnhancer<SimpleInterfaceFactory>(
-				SimpleInterfaceFactory.class,
-				ClassNoPublicConstructor.class,
+		new InterfaceEnhancer<SimpleInterfaceFactory>(SimpleInterfaceFactory.class, ClassNoPublicConstructor.class,
 				enhances());
 	}
 	
-	private static Enhance[] enhances(Enhance... enhances) {
-		return enhances;
+	/**
+	 * Test method for {@link InterfaceEnhancer#InterfaceEnhancer(java.lang.Class, java.lang.Class, java.util.List)}.
+	 */
+	@SuppressWarnings("unused")
+	@Test(expected = IllegalArgumentException.class)
+	public void testInterfaceEnhancer_ProductDefaultConstructor() {
+		new InterfaceEnhancer<SimpleInterfaceFactory>(SimpleInterfaceFactory.class, ClassNoDefaultConstructor.class,
+				enhances());
+	}
+	
+	/**
+	 * Test method for {@link InterfaceEnhancer#InterfaceEnhancer(java.lang.Class, java.lang.Class, java.util.List)}.
+	 */
+	@SuppressWarnings("unused")
+	@Test(expected = IllegalArgumentException.class)
+	public void testInterfaceEnhancer_ProductNotClass() {
+		new InterfaceEnhancer<SimpleInterfaceFactory>(SimpleInterfaceFactory.class, SimpleInterfaceFactory.class,
+				enhances());
+	}
+	
+	/**
+	 * Test method for {@link InterfaceEnhancer#InterfaceEnhancer(java.lang.Class, java.lang.Class, java.util.List)}.
+	 */
+	@SuppressWarnings("unused")
+	@Test(expected = IllegalArgumentException.class)
+	public void testInterfaceEnhancer_ProductNotConcrete() {
+		new InterfaceEnhancer<SimpleInterfaceFactory>(SimpleInterfaceFactory.class, EmptyFactoryAbstract.class,
+				enhances());
+	}
+	
+	/**
+	 * Test method for {@link InterfaceEnhancer#InterfaceEnhancer(java.lang.Class, java.lang.Class, java.util.List)}.
+	 */
+	@SuppressWarnings("unused")
+	@Test(expected = IllegalArgumentException.class)
+	public void testInterfaceEnhancer_ProductNotInheritable() {
+		new InterfaceEnhancer<SimpleInterfaceFactory>(SimpleInterfaceFactory.class, EmptyFactoryFinal.class, enhances());
+	}
+	
+	/**
+	 * Test method for {@link InterfaceEnhancer#InterfaceEnhancer(java.lang.Class, java.lang.Class, java.util.List)}.
+	 */
+	@SuppressWarnings("unused")
+	@Test(expected = IllegalArgumentException.class)
+	public void testInterfaceEnhancer_ProductNotNormalClass() {
+		new InterfaceEnhancer<SimpleInterfaceFactory>(SimpleInterfaceFactory.class, EmptyFactoryEnum.class, enhances());
+	}
+	
+	/**
+	 * Test method for {@link InterfaceEnhancer#InterfaceEnhancer(java.lang.Class, java.lang.Class, java.util.List)}.
+	 */
+	@SuppressWarnings("unused")
+	@Test(expected = IllegalArgumentException.class)
+	public void testInterfaceEnhancer_ProductNotPublic() {
+		new InterfaceEnhancer<SimpleInterfaceFactory>(SimpleInterfaceFactory.class, ClassNotPublic.class, enhances());
 	}
 }

@@ -22,25 +22,19 @@ package org.jiemamy.utils.enhancer;
  */
 public class AccessSelfInvisibles implements SingularFactory {
 	
-	/**
-	 * Test visibility.
-	 */
-	public Object newInstance() {
-		new AccessSelfInvisibles(false);
-		new AccessSelfInvisibles('a');
-		new AccessSelfInvisibles((byte) 1);
-		AccessSelfInvisibles instance = new AccessSelfInvisibles();
-		instance.privateField.toString();
-		instance.packageField.toString();
-		instance.protectedField.toString();
-		instance.publicField.toString();
-		instance.privateMethod();
-		instance.packageMethod();
-		instance.protectedMethod();
-		instance.publicMethod();
-		return null;
-	}
+	/** private field. */
+	private String privateField = "";
 	
+	/** package access field. */
+	String packageField = "";
+	
+	/** protected field. */
+	protected String protectedField = "";
+	
+	/** public field. */
+	public String publicField = "";
+	
+
 	/**
 	 * public constructor
 	 */
@@ -72,27 +66,28 @@ public class AccessSelfInvisibles implements SingularFactory {
 		super();
 	}
 	
-
-	/** private field. */
-	private String privateField = "";
-	
-	/** package access field. */
-	String packageField = "";
-	
-	/** protected field. */
-	protected String protectedField = "";
-	
-	/** public field. */
-	public String publicField = "";
-	
-
-	/** private method */
-	private void privateMethod() {
-		return;
+	/**
+	 * Test visibility.
+	 */
+	@SuppressWarnings("unused")
+	public Object newInstance() {
+		new AccessSelfInvisibles(false);
+		new AccessSelfInvisibles('a');
+		new AccessSelfInvisibles((byte) 1);
+		AccessSelfInvisibles instance = new AccessSelfInvisibles();
+		instance.privateField.toString();
+		instance.packageField.toString();
+		instance.protectedField.toString();
+		instance.publicField.toString();
+		instance.privateMethod();
+		instance.packageMethod();
+		instance.protectedMethod();
+		instance.publicMethod();
+		return null;
 	}
 	
-	/** package access method */
-	void packageMethod() {
+	/** public method */
+	public void publicMethod() {
 		return;
 	}
 	
@@ -101,8 +96,13 @@ public class AccessSelfInvisibles implements SingularFactory {
 		return;
 	}
 	
-	/** public method */
-	public void publicMethod() {
+	/** package access method */
+	void packageMethod() {
+		return;
+	}
+	
+	/** private method */
+	private void privateMethod() {
 		return;
 	}
 }
