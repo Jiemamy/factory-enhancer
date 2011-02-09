@@ -15,13 +15,13 @@
     <url>http://jira.jiemamy.org/browse/FE</url>
   </issueManagement>
   <ciManagement>
-    <system>hudson</system>
-    <url>http://hudson.jiemamy.org/job/factory-enhancer/</url>
+    <system>bamboo</system>
+    <url>http://bamboo.jiemamy.org/browse/FE-DEF</url>
     <notifiers>
       <notifier>
         <sendOnSuccess>false</sendOnSuccess>
         <configuration>
-          <recipients>jiemamy-dev@googlegroups.com</recipients>
+          <recipients>jiemamy-notify@googlegroups.com</recipients>
         </configuration>
       </notifier>
     </notifiers>
