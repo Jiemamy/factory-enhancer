@@ -4,7 +4,7 @@
   <parent>
     <groupId>org.jiemamy</groupId>
     <artifactId>jiemamy-master</artifactId>
-    <version>1.6.2</version>
+    <version>1.7.1</version>
   </parent>
   <groupId>org.jiemamy</groupId>
   <artifactId>factory-enhancer</artifactId>
