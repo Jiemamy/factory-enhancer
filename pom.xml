@@ -41,13 +41,6 @@
     <developerConnection>scm:svn:http://svn.jiemamy.org/products/leto/factory-enhancer/trunk</developerConnection>
     <url>http://fisheye.jiemamy.org/browse/leto/factory-enhancer/trunk</url>
   </scm>
-  <repositories>
-    <repository>
-      <id>jiemamy.org</id>
-      <name>Jiemamy Repository</name>
-      <url>http://maven.jiemamy.org/release</url>
-    </repository>
-  </repositories>
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -87,4 +80,11 @@
       <artifactId>logback-classic</artifactId>
     </dependency>
   </dependencies>
+  <repositories>
+    <repository>
+      <id>jiemamy.org-release</id>
+      <name>Jiemamy Repository</name>
+      <url>http://maven.jiemamy.org/release</url>
+    </repository>
+  </repositories>
 </project>
